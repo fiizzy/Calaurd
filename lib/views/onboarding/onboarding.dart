@@ -11,6 +11,46 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
 
+  String pathChange() {
+    switch (currentIndex) {
+      case 0:
+        {
+          return 'images/onboardingOne.png';
+        }
+      case 1:
+        {
+          return 'images/onboardingTwo.png';
+        }
+      case 2:
+        {
+          return 'images/onboardingOne.png';
+        }
+
+      default:
+        return 'Something went Wrong';
+    }
+  }
+
+  String descriptionChange() {
+    switch (currentIndex) {
+      case 0:
+        {
+          return 'First, it was Black and White';
+        }
+      case 1:
+        {
+          return 'then came Calaurd,';
+        }
+      case 2:
+        {
+          return '...and all was Coloured';
+        }
+
+      default:
+        return 'Something went Wrong';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +65,18 @@ class _OnboardingState extends State<Onboarding> {
               });
             },
             children: [
-              OnboardingOne(),
-              OnboardingOne(),
-              OnboardingOne(),
+              OnboardingOne(
+                imagePath: pathChange(),
+                description: descriptionChange(),
+              ),
+              OnboardingOne(
+                imagePath: pathChange(),
+                description: descriptionChange(),
+              ),
+              OnboardingOne(
+                imagePath: pathChange(),
+                description: descriptionChange(),
+              ),
             ],
           ),
           Positioned(
@@ -36,6 +85,35 @@ class _OnboardingState extends State<Onboarding> {
               child: IndicatorsWidget(
                 currentIndex: currentIndex,
               )),
+          MyStyles.verticalSpaceZero,
+          Positioned(
+            bottom: MyStyles.deviceHieight(context) * .04,
+            child: Container(
+              width: MyStyles.buttonWidth(context),
+              height: MyStyles.buttonHeight,
+              decoration: BoxDecoration(gradient: MyStyles.gradient),
+              // color: MyStyles.primaryGreen,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed))
+                        return MyStyles.gradientGreen;
+                      return MyStyles
+                          .gradientGreen; // Use the component's default.
+                    },
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+                child: Text(
+                  "GET STARTED",
+                  style: MyStyles.buttonText,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
