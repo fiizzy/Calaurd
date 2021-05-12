@@ -1,4 +1,5 @@
 import 'package:calaurd/styles/styles.dart';
+import 'package:calaurd/views/home/home.dart';
 import 'package:calaurd/views/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Onboarding(),
+        '/home': (context) => Home(),
       },
     );
   }

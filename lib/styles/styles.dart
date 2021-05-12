@@ -29,6 +29,11 @@ class MyStyles {
     fontFamily: 'Aeonik-Regular',
     color: white,
   );
+  static TextStyle bodyText = TextStyle(
+    fontSize: 16,
+    fontFamily: 'Aeonik-Regular',
+    color: Colors.black,
+  );
 
   //All Gradient Widgets
   static Gradient gradient = LinearGradient(
@@ -56,20 +61,23 @@ class MyStyles {
   static SizedBox horizontalSpaceTwo = SizedBox(
     width: 30,
   );
+
+  //Border Radius
+  static BorderRadius myBorderRadius = BorderRadius.circular(500);
 }
 
 class AppTheme {
   AppTheme._();
 
   //Colors for theme
-  static Color primaryBlue = MyStyles.gradientGreen;
+  static Color primaryBlue = MyStyles.gradientPurple;
 
   //Internal Flutter theme swatches and colours
   static ThemeData lightTheme = ThemeData(
     fontFamily: 'Aeonik-Regular',
 
     //This wierdly controls the Border Color
-    hintColor: MyStyles.gradientGreen,
+    hintColor: MyStyles.gradientPurple,
 
     buttonTheme: ButtonThemeData(
       buttonColor: primaryBlue,
