@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "687985403520",
+    "project_id": "calaurd-mobile-app",
+    "storage_bucket": "calaurd-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687985403520:android:7790e5258b22859124e865",
+        "android_client_info": {
+          "package_name": "com.calaurd.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687985403520-036u37g9cqsk73o4591dm0qt76fr51nu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.calaurd.app",
+            "certificate_hash": "11ad02ffde793ecdee2bc1165fa627ad04ab84a1"
+          }
+        },
+        {
+          "client_id": "687985403520-ip8cfuqb6mndev3h066p1i48evub2v9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgwJgJso91Xl1entkcs8YuHr5ybkq-Mkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687985403520-ip8cfuqb6mndev3h066p1i48evub2v9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
