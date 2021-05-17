@@ -18,6 +18,7 @@ class MyStyles {
   static Color gradientGreen = Color(0xff00E4AE);
   static Color primaryGreen = Color(0xff0CC393);
   static Color backgroundColour = Colors.black;
+  static Color primaryGrey = Color(0xff282828);
 
   //Headers
   static TextStyle headerOne = TextStyle(
