@@ -1,4 +1,3 @@
-import 'package:calaurd/styles/styles.dart';
 import 'package:flutter/material.dart';
 
 class Preloader extends StatelessWidget {

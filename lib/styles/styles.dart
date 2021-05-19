@@ -36,6 +36,11 @@ class MyStyles {
     fontFamily: 'Aeonik-Regular',
     color: Colors.black,
   );
+  static TextStyle bodyTextWhite = TextStyle(
+    fontSize: 18,
+    fontFamily: 'Aeonik-Regular',
+    color: white,
+  );
 
   //All Gradient Widgets
   static Gradient gradient = LinearGradient(

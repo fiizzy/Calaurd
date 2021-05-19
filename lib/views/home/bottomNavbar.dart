@@ -17,15 +17,66 @@ class _BottomNavbarState extends State<BottomNavbar> {
           height: 60,
           width: MyStyles.deviceWidth(context),
           color: MyStyles.primaryGrey,
+          child: Row(
+            children: [
+              Container(
+                height: 60,
+                width: MyStyles.deviceWidth(context) * .5,
+                child: Center(
+                  child: Material(
+                    shape: CircleBorder(),
+                    color: Color.fromRGBO(0, 0, 0, 0),
+                    clipBehavior: Clip.hardEdge,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                          height: 60, width: 60, child: Icon(Icons.home)),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 60,
+                width: MyStyles.deviceWidth(context) * .5,
+                child: Center(
+                  child: Material(
+                    shape: CircleBorder(),
+                    color: Color.fromRGBO(0, 0, 0, 0),
+                    clipBehavior: Clip.hardEdge,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/uploadImage');
+                      },
+                      child: Container(
+                          height: 60, width: 60, child: Icon(Icons.image)),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         Positioned(
           top: -20,
-          child: Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-                gradient: MyStyles.gradient,
-                borderRadius: MyStyles.myBorderRadius),
+          child: Material(
+            shape: CircleBorder(),
+            clipBehavior: Clip.hardEdge,
+            child: InkWell(
+              splashColor: Colors.red,
+              onTap: () {
+                Navigator.pushNamed(context, '/uploadImage');
+              },
+              child: Container(
+                child: Center(
+                  child: Icon(Icons.add),
+                ),
+                height: 60,
+                width: 60,
+                decoration: BoxDecoration(
+                    gradient: MyStyles.gradient,
+                    borderRadius: MyStyles.myBorderRadius),
+              ),
+            ),
           ),
         )
       ],

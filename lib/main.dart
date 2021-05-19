@@ -1,6 +1,7 @@
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/home/home.dart';
 import 'package:calaurd/views/onboarding/onboarding.dart';
+import 'package:calaurd/views/uploadImage/uploadImage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Onboarding(),
         '/home': (context) => Home(),
+        '/uploadImage': (context) => UploadImage(),
       },
     );
   }
