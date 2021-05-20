@@ -81,6 +81,8 @@ class AppTheme {
 
   //Internal Flutter theme swatches and colours
   static ThemeData lightTheme = ThemeData(
+    primaryColorLight: primaryBlue,
+    primarySwatch: MaterialColor(0, {0: primaryBlue}),
     fontFamily: 'Aeonik-Regular',
 
     //This wierdly controls the Border Color

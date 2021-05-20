@@ -12,7 +12,7 @@ class _UploadImageState extends State<UploadImage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: MyStyles.backgroundColour,
       appBar: AppBar(
         centerTitle: true,
@@ -27,7 +27,7 @@ class _UploadImageState extends State<UploadImage> {
       ),
       body: Container(
         padding: EdgeInsets.all(20),
-        child: Column(
+        child: ListView(
           children: [
             Material(
               color: Colors.transparent,
@@ -64,7 +64,7 @@ class _UploadImageState extends State<UploadImage> {
                 ),
               ),
             ),
-            MyStyles.verticalSpaceTwo,
+            MyStyles.verticalSpaceZero,
             Material(
               color: Colors.transparent,
               clipBehavior: Clip.hardEdge,
@@ -80,7 +80,7 @@ class _UploadImageState extends State<UploadImage> {
                       ),
                     ),
                     Container(
-                      height: 200,
+                      height: 300,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -90,43 +90,48 @@ class _UploadImageState extends State<UploadImage> {
                           ),
                           MyStyles.verticalSpaceZero,
                           Text(
-                            'Upload Image from Gallery',
+                            'Upload Image from URL',
                             style: MyStyles.bodyTextWhite,
                           ),
                           MyStyles.verticalSpaceZero,
-                          Form(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.email),
-                                  labelText: 'Email',
-                                  hintText: 'example@gmail.com',
+                          Container(
+                            width: 300,
+                            child: Form(
+                                child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextFormField(
+                                  style: MyStyles.bodyTextWhite,
+                                  decoration: InputDecoration(
+                                    labelText: 'Enter Link',
+                                    hintText: 'Enter or Paste Link',
+                                    fillColor: MyStyles.gradientPurple,
+                                  ),
                                 ),
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
-                                      EdgeInsets.zero),
-                                ),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/home');
-                                },
-                                child: Container(
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                      gradient: MyStyles.gradient),
-                                  child: Center(
-                                    child: Text(
-                                      "GET STARTED",
-                                      style: MyStyles.buttonText,
+                                MyStyles.verticalSpaceZero,
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all(
+                                        EdgeInsets.zero),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/home');
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        gradient: MyStyles.gradient),
+                                    child: Center(
+                                      child: Text(
+                                        "Proceed",
+                                        style: MyStyles.buttonText,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ))
+                              ],
+                            )),
+                          )
                         ],
                       ),
                     )
