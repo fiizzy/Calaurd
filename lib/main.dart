@@ -1,3 +1,4 @@
+import 'package:calaurd/imagePreviewDisplay/selectedImage.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/home/home.dart';
 import 'package:calaurd/views/onboarding/onboarding.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => Onboarding(),
         '/home': (context) => Home(),
         '/uploadImage': (context) => UploadImage(),
+        '/slectedimage': (context) => SelectedImage(),
       },
     );
   }

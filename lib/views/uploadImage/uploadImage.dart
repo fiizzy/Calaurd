@@ -1,6 +1,9 @@
+import 'dart:io';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class UploadImage extends StatefulWidget {
@@ -9,6 +12,21 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
+  File? _image;
+  final picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,122 +43,119 @@ class _UploadImageState extends State<UploadImage> {
           child: Text('UploadImage'),
         ),
       ),
-      body: Container(
+      body: ListView(
         padding: EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            Material(
-              color: Colors.transparent,
-              clipBehavior: Clip.hardEdge,
-              child: InkWell(
-                onTap: () {},
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      height: MyStyles.deviceHieight(context) * .35,
-                      child: WebsafeSvg.asset(
-                        'svg/uploadImageBg.svg',
+        children: [
+          Material(
+            color: Colors.transparent,
+            clipBehavior: Clip.hardEdge,
+            child: InkWell(
+              splashColor: MyStyles.primaryGrey,
+              onTap: () {
+                getImage();
+                print('Workingn');
+              },
+              child: Container(
+                  height: MyStyles.deviceHieight(context) * .35,
+                  color: MyStyles.darkGrey,
+                  child: DottedBorder(
+                    color: Colors.white,
+                    strokeWidth: 4,
+                    dashPattern: [3],
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            WebsafeSvg.asset(
+                              'svg/uploadImageImage.svg',
+                              height: 70,
+                            ),
+                            MyStyles.verticalSpaceZero,
+                            Text(
+                              'Upload Image from Gallery',
+                              style: MyStyles.bodyTextWhite,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      height: 200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          WebsafeSvg.asset(
-                            'svg/uploadImageImage.svg',
-                            height: 70,
-                          ),
-                          MyStyles.verticalSpaceZero,
-                          Text(
-                            'Upload Image from Gallery',
-                            style: MyStyles.bodyTextWhite,
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
+                  )),
             ),
-            MyStyles.verticalSpaceZero,
-            Material(
-              color: Colors.transparent,
-              clipBehavior: Clip.hardEdge,
-              child: InkWell(
-                onTap: () {},
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      child: WebsafeSvg.asset(
-                        'svg/uploadImageBg.svg',
-                        height: MyStyles.deviceHieight(context) * .35,
+          ),
+          MyStyles.verticalSpaceTwo,
+          Material(
+            color: Colors.transparent,
+            clipBehavior: Clip.hardEdge,
+            child: InkWell(
+              splashColor: MyStyles.primaryGrey,
+              onTap: () {
+                print('Workingn');
+              },
+              child: Container(
+                  // padding: EdgeInsets.all(20),
+                  height: MyStyles.deviceHieight(context) * .42,
+                  width: 0,
+                  color: MyStyles.darkGrey,
+                  child: DottedBorder(
+                    color: Colors.white,
+                    strokeWidth: 4,
+                    dashPattern: [3],
+                    child: Center(
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            WebsafeSvg.asset(
+                              'svg/imageUrl.svg',
+                              height: 70,
+                            ),
+                            MyStyles.verticalSpaceZero,
+                            Text(
+                              'Upload Image from URL',
+                              style: MyStyles.bodyTextWhite,
+                            ),
+                            Container(
+                              child: TextFormField(
+                                style: MyStyles.bodyTextWhite,
+                                decoration: InputDecoration(
+                                  labelText: 'Enter Link',
+                                  hintText: 'Enter or Paste Link',
+                                  fillColor: MyStyles.gradientPurple,
+                                ),
+                              ),
+                            ),
+                            MyStyles.verticalSpaceZero,
+                            Material(
+                              shape: CircleBorder(),
+                              clipBehavior: Clip.hardEdge,
+                              child: InkWell(
+                                splashColor: Colors.red,
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/uploadImage');
+                                },
+                                child: Container(
+                                  child: Center(
+                                    child: Icon(Icons.chevron_right_rounded),
+                                  ),
+                                  height: 60,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                      gradient: MyStyles.gradient,
+                                      borderRadius: MyStyles.myBorderRadius),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      height: 300,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          WebsafeSvg.asset(
-                            'svg/imageUrl.svg',
-                            height: 70,
-                          ),
-                          MyStyles.verticalSpaceZero,
-                          Text(
-                            'Upload Image from URL',
-                            style: MyStyles.bodyTextWhite,
-                          ),
-                          MyStyles.verticalSpaceZero,
-                          Container(
-                            width: 300,
-                            child: Form(
-                                child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextFormField(
-                                  style: MyStyles.bodyTextWhite,
-                                  decoration: InputDecoration(
-                                    labelText: 'Enter Link',
-                                    hintText: 'Enter or Paste Link',
-                                    fillColor: MyStyles.gradientPurple,
-                                  ),
-                                ),
-                                MyStyles.verticalSpaceZero,
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
-                                        EdgeInsets.zero),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/home');
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        gradient: MyStyles.gradient),
-                                    child: Center(
-                                      child: Text(
-                                        "Proceed",
-                                        style: MyStyles.buttonText,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
+                  )),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

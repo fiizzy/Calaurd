@@ -19,6 +19,7 @@ class MyStyles {
   static Color primaryGreen = Color(0xff0CC393);
   static Color backgroundColour = Colors.black;
   static Color primaryGrey = Color(0xff282828);
+  static Color darkGrey = Color(0xff0F0F0F);
 
   //Headers
   static TextStyle headerOne = TextStyle(
@@ -82,7 +83,6 @@ class AppTheme {
   //Internal Flutter theme swatches and colours
   static ThemeData lightTheme = ThemeData(
     primaryColorLight: primaryBlue,
-    primarySwatch: MaterialColor(0, {0: primaryBlue}),
     fontFamily: 'Aeonik-Regular',
 
     //This wierdly controls the Border Color
