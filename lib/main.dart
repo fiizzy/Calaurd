@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => Onboarding(),
         '/home': (context) => Home(),
         '/uploadImage': (context) => UploadImage(),
-        '/slectedimage': (context) => SelectedImage(),
+        // '/slectedimage': (context) => SelectedImage(),
       },
     );
   }

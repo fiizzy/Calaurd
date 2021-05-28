@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:calaurd/imagePreviewDisplay/selectedImage.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -20,6 +21,13 @@ class _UploadImageState extends State<UploadImage> {
 
     setState(() {
       if (pickedFile != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => SelectedImage(
+                    image: _image,
+                  )),
+        );
         _image = File(pickedFile.path);
       } else {
         print('No image selected.');
