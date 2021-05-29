@@ -1,10 +1,12 @@
 import 'dart:io';
-import 'package:calaurd/imagePreviewDisplay/selectedImage.dart';
+import 'package:calaurd/providers/imageProvider.dart';
+import 'package:calaurd/views/imagePreviewDisplay/selectedImage.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class UploadImage extends StatefulWidget {
@@ -13,30 +15,11 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
-  File? _image;
-  final picker = ImagePicker();
-
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => SelectedImage(
-                    image: _image,
-                  )),
-        );
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final imageProvider =
+        Provider.of<ImageProviderClass>(context, listen: false);
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: MyStyles.backgroundColour,
@@ -60,8 +43,7 @@ class _UploadImageState extends State<UploadImage> {
             child: InkWell(
               splashColor: MyStyles.primaryGrey,
               onTap: () {
-                getImage();
-                print('Workingn');
+                imageProvider.getImage(context);
               },
               child: Container(
                   height: MyStyles.deviceHieight(context) * .35,
