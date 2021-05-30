@@ -2,6 +2,7 @@ import 'package:calaurd/providers/imageProvider.dart';
 import 'package:calaurd/services/service.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
+import 'package:calaurd/views/widgets/preloader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,8 @@ class SelectedImage extends StatefulWidget {
 
 class _SelectedImageState extends State<SelectedImage> {
   Services? service = new Services();
+  bool isLoading = false;
+  String? imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -29,47 +32,56 @@ class _SelectedImageState extends State<SelectedImage> {
         ),
         body: Consumer<ImageProviderClass>(
             builder: (context, imageProvider, child) {
-          return Stack(
-            alignment: AlignmentDirectional.center,
-            children: [
-              Container(
-                child: Center(
-                  child: imageProvider.image == null
-                      ? Text('No image selected.')
-                      : Image.file(imageProvider.image!),
-                ),
-              ),
-              Positioned(
-                bottom: MyStyles.deviceHieight(context) * .04,
-                child: Container(
-                  width: MyStyles.buttonWidth(context),
-                  height: MyStyles.buttonHeight,
-                  decoration: BoxDecoration(gradient: MyStyles.gradient),
-                  // color: MyStyles.primaryGreen,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    ),
-                    onPressed: () async {
-                      setState(() {
-                        service!.getColouredImage(context);
-                      });
-                    },
-                    child: Container(
-                      height: MyStyles.buttonHeight,
-                      decoration: BoxDecoration(gradient: MyStyles.gradient),
+          return isLoading
+              ? Center(child: Preloader())
+              : Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Container(
                       child: Center(
-                        child: Text(
-                          "CALAURIZE",
-                          style: MyStyles.buttonText,
+                        child: imageProvider.image == null
+                            ? Text('No image selected.')
+                            : imageUrl == null
+                                ? Image.file(imageProvider.image!)
+                                : Image.network(imageUrl!),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: MyStyles.deviceHieight(context) * .04,
+                      child: Container(
+                        width: MyStyles.buttonWidth(context),
+                        height: MyStyles.buttonHeight,
+                        decoration: BoxDecoration(gradient: MyStyles.gradient),
+                        // color: MyStyles.primaryGreen,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(EdgeInsets.zero),
+                          ),
+                          onPressed: () async {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            imageUrl = await service!.getColouredImage(context);
+                            setState(() {
+                              isLoading = false;
+                            });
+                          },
+                          child: Container(
+                            height: MyStyles.buttonHeight,
+                            decoration:
+                                BoxDecoration(gradient: MyStyles.gradient),
+                            child: Center(
+                              child: Text(
+                                "CALAURIZE",
+                                style: MyStyles.buttonText,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-            ],
-          );
+                  ],
+                );
         }));
   }
 }

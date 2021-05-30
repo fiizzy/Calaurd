@@ -2,7 +2,6 @@ import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/home/bottomNavbar.dart';
 import 'package:flutter/material.dart';
 import 'package:websafe_svg/websafe_svg.dart';
-import '../widgets/preloader.dart';
 
 class Home extends StatefulWidget {
   @override

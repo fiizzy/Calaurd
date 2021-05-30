@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 import 'package:calaurd/providers/imageProvider.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class Services {
-  Future getColouredImage(context) async {
+  Future<String> getColouredImage(context) async {
     ImageProviderClass imageProvider =
         Provider.of<ImageProviderClass>(context, listen: false);
 
@@ -14,6 +16,10 @@ class Services {
         .add(await http.MultipartFile.fromPath('image', imageProvider.path!));
     var res = await request.send();
     var response = await http.Response.fromStream(res);
-    return response;
+    var finalResult = jsonDecode(response.body);
+
+    print(finalResult['output_url']);
+
+    return finalResult['output_url'];
   }
 }
