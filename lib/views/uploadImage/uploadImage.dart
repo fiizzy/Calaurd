@@ -1,11 +1,8 @@
-import 'dart:io';
 import 'package:calaurd/providers/imageProvider.dart';
-import 'package:calaurd/views/imagePreviewDisplay/selectedImage.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 

@@ -30,6 +30,7 @@ dependencies:
   provider: ^5.0.0
   dotted_border: ^2.0.0
   image_picker: ^0.7.5+3
+  dio: ^4.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

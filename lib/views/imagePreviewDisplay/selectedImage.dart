@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:calaurd/providers/imageProvider.dart';
+import 'package:calaurd/services/service.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,8 @@ class SelectedImage extends StatefulWidget {
 }
 
 class _SelectedImageState extends State<SelectedImage> {
+  Services? service = new Services();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +50,10 @@ class _SelectedImageState extends State<SelectedImage> {
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all(EdgeInsets.zero),
                     ),
-                    onPressed: () {
-                      // Navigator.pushNamed(context, '/home');
+                    onPressed: () async {
+                      setState(() {
+                        service!.getColouredImage(context);
+                      });
                     },
                     child: Container(
                       height: MyStyles.buttonHeight,

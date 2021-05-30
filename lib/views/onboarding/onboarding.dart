@@ -1,6 +1,5 @@
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/home/enterEmail.dart';
-import 'package:calaurd/views/home/home.dart';
 import 'package:calaurd/views/onboarding/indicatorWidget.dart';
 import 'package:calaurd/views/onboarding/onboardingWidgets.dart';
 import 'package:flutter/material.dart';
