@@ -8,7 +8,10 @@ class ImageProviderClass extends ChangeNotifier {
   File? image;
   String? path;
   Image? homeScreenImage;
+  Image? urlImage;
   var homeScreenImageBytes;
+  var urlImageBytes;
+
   String? checkSource;
   final picker = ImagePicker();
 
@@ -28,11 +31,30 @@ class ImageProviderClass extends ChangeNotifier {
   }
 
   Future getHomeScreenImage(BuildContext context, String imagePath) async {
-    checkSource = 'fromHomeScreen';
-    homeScreenImage = Image.asset(imagePath);
+    try {
+      checkSource = 'fromHomeScreen';
+      homeScreenImage = Image.asset(imagePath);
 
-    Navigator.pushNamed(context, '/selectedImage');
-    homeScreenImageBytes =
-        (await rootBundle.load(imagePath)).buffer.asUint8List();
+      Navigator.pushNamed(context, '/selectedImage');
+      homeScreenImageBytes =
+          (await rootBundle.load(imagePath)).buffer.asUint8List();
+    } catch (e) {
+      print('e');
+      return 'error Loading Image';
+    }
+  }
+
+  Future getUrlImage(BuildContext context, String url) async {
+    try {
+      checkSource = 'fromUrl';
+      urlImage = Image.network(url);
+      Navigator.pushNamed(context, '/selectedImage');
+      urlImageBytes = (await NetworkAssetBundle(Uri.parse(url)).load(url))
+          .buffer
+          .asUint8List();
+    } catch (e) {
+      print('e');
+      return 'Check the URL';
+    }
   }
 }

@@ -17,6 +17,10 @@ class Services {
       request.files.add(http.MultipartFile.fromBytes(
           'image', imageProvider.homeScreenImageBytes,
           filename: 'photo.jpg'));
+    } else if (imageProvider.checkSource == 'fromUrl') {
+      request.files.add(http.MultipartFile.fromBytes(
+          'image', imageProvider.urlImageBytes,
+          filename: 'photo.jpg'));
     } else {
       request.files
           .add(await http.MultipartFile.fromPath('image', imageProvider.path!));

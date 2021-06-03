@@ -43,17 +43,20 @@ class _SelectedImageState extends State<SelectedImage> {
                               ? imageProvider.homeScreenImage
                               : imageProvider.checkSource == 'fromGallery'
                                   ? Image.file(imageProvider.image!)
-                                  : Image.network(
-                                      imageUrl!,
-                                      loadingBuilder: (BuildContext context,
-                                          Widget child,
-                                          ImageChunkEvent? loadingProgress) {
-                                        if (loadingProgress == null) {
-                                          return child;
-                                        }
-                                        return Preloader();
-                                      },
-                                    )),
+                                  : imageProvider.checkSource == 'fromUrl'
+                                      ? imageProvider.urlImage
+                                      : Image.network(
+                                          imageUrl!,
+                                          loadingBuilder: (BuildContext context,
+                                              Widget child,
+                                              ImageChunkEvent?
+                                                  loadingProgress) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+                                            return Preloader();
+                                          },
+                                        )),
                     ),
                     Positioned(
                       bottom: MyStyles.deviceHieight(context) * .04,

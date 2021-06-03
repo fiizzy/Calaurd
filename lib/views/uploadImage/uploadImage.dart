@@ -12,6 +12,11 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
+  TextEditingController urlController = new TextEditingController();
+  String? blackandWhiteUrl;
+
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     final imageProvider =
@@ -106,6 +111,8 @@ class _UploadImageState extends State<UploadImage> {
                             ),
                             Container(
                               child: TextFormField(
+                                // validator: (),
+                                controller: urlController,
                                 style: MyStyles.bodyTextWhite,
                                 decoration: InputDecoration(
                                   labelText: 'Enter Link',
@@ -121,7 +128,9 @@ class _UploadImageState extends State<UploadImage> {
                               child: InkWell(
                                 splashColor: Colors.red,
                                 onTap: () {
-                                  Navigator.pushNamed(context, '/uploadImage');
+                                  blackandWhiteUrl = urlController.text;
+                                  imageProvider.getUrlImage(
+                                      context, blackandWhiteUrl!);
                                 },
                                 child: Container(
                                   child: Center(
