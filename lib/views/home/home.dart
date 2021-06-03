@@ -1,6 +1,8 @@
+import 'package:calaurd/providers/imageProvider.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/views/home/bottomNavbar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentIndex = 0;
+  List imagePaths = ['images/onboardingTwo.png', 'images/onboardingThree.jpg'];
 
   void changeCurrentIndex(index) {
     setState(() {
@@ -19,6 +22,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    ImageProviderClass imageProvider =
+        Provider.of<ImageProviderClass>(context, listen: false);
+
     return Scaffold(
         backgroundColor: MyStyles.backgroundColour,
         appBar: AppBar(
@@ -46,21 +52,28 @@ class _HomeState extends State<Home> {
                   viewportFraction: .7,
                 ),
                 children: [
-                  Container(
-                      padding: EdgeInsets.fromLTRB(5, 20, 5, 50),
-                      width: MyStyles.deviceWidth(context),
-                      // height: MyStyles.deviceHieight(context),
-                      height: MyStyles.deviceHieight(context) * .7,
-                      child: Image.asset(
-                        'images/onboardingTwo.png',
-                        fit: currentIndex == 1 ? BoxFit.fitWidth : BoxFit.cover,
-                      )),
+                  InkWell(
+                    onTap: () {
+                      imageProvider.getHomeScreenImage(context, imagePaths[0]);
+                    },
+                    child: Container(
+                        padding: EdgeInsets.fromLTRB(5, 20, 5, 50),
+                        width: MyStyles.deviceWidth(context),
+                        // height: MyStyles.deviceHieight(context),
+                        height: MyStyles.deviceHieight(context) * .7,
+                        child: Image.asset(
+                          imagePaths[0],
+                          fit: currentIndex == 1
+                              ? BoxFit.fitWidth
+                              : BoxFit.cover,
+                        )),
+                  ),
                   Container(
                       padding: EdgeInsets.fromLTRB(5, 20, 5, 50),
                       width: MyStyles.deviceWidth(context),
                       height: MyStyles.deviceHieight(context),
                       child: Image.asset(
-                        'images/onboardingThree.jpg',
+                        imagePaths[1],
                         height: MyStyles.deviceHieight(context) * .7,
                         fit: currentIndex == 0 ? BoxFit.fitWidth : BoxFit.cover,
                       )),

@@ -39,12 +39,21 @@ class _SelectedImageState extends State<SelectedImage> {
                   children: [
                     Container(
                       child: Center(
-                        child: imageProvider.image == null
-                            ? Text('No image selected.')
-                            : imageUrl == null
-                                ? Image.file(imageProvider.image!)
-                                : Image.network(imageUrl!),
-                      ),
+                          child: imageProvider.checkSource == 'fromHomeScreen'
+                              ? imageProvider.homeScreenImage
+                              : imageProvider.checkSource == 'fromGallery'
+                                  ? Image.file(imageProvider.image!)
+                                  : Image.network(
+                                      imageUrl!,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
+                                          ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return Preloader();
+                                      },
+                                    )),
                     ),
                     Positioned(
                       bottom: MyStyles.deviceHieight(context) * .04,
@@ -57,15 +66,20 @@ class _SelectedImageState extends State<SelectedImage> {
                           style: ButtonStyle(
                             padding: MaterialStateProperty.all(EdgeInsets.zero),
                           ),
-                          onPressed: () async {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            imageUrl = await service!.getColouredImage(context);
-                            setState(() {
-                              isLoading = false;
-                            });
-                          },
+                          onPressed: imageUrl == null
+                              ? () async {
+                                  setState(() {
+                                    isLoading = true;
+                                  });
+                                  imageUrl =
+                                      await service!.getColouredImage(context);
+
+                                  imageProvider.checkSource = null;
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                }
+                              : null,
                           child: Container(
                             height: MyStyles.buttonHeight,
                             decoration:
