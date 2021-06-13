@@ -1,6 +1,7 @@
 import 'package:calaurd/providers/imageProvider.dart';
 import 'package:calaurd/services/service.dart';
 import 'package:calaurd/styles/styles.dart';
+import 'package:calaurd/views/outputImage/outputImage.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:calaurd/views/widgets/preloader.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +13,11 @@ class SelectedImage extends StatefulWidget {
 }
 
 class _SelectedImageState extends State<SelectedImage> {
-  Services? service = new Services();
-  bool isLoading = false;
-  String? imageUrl;
-
   @override
   Widget build(BuildContext context) {
+    dynamic stateProvider =
+        Provider.of<ImageProviderClass>(context, listen: false);
+
     return Scaffold(
         backgroundColor: MyStyles.backgroundColour,
         appBar: AppBar(
@@ -27,12 +27,14 @@ class _SelectedImageState extends State<SelectedImage> {
           elevation: 0,
           shadowColor: MyStyles.backgroundColour,
           title: Container(
-            child: Text('Black & White Preview'),
+            child: stateProvider.isLoading == false
+                ? Text('Black and White Preview')
+                : Text('Processing...'),
           ),
         ),
         body: Consumer<ImageProviderClass>(
             builder: (context, imageProvider, child) {
-          return isLoading
+          return imageProvider.isLoading == true
               ? Center(child: Preloader())
               : Stack(
                   alignment: AlignmentDirectional.center,
@@ -45,18 +47,7 @@ class _SelectedImageState extends State<SelectedImage> {
                                   ? Image.file(imageProvider.image!)
                                   : imageProvider.checkSource == 'fromUrl'
                                       ? imageProvider.urlImage
-                                      : Image.network(
-                                          imageUrl!,
-                                          loadingBuilder: (BuildContext context,
-                                              Widget child,
-                                              ImageChunkEvent?
-                                                  loadingProgress) {
-                                            if (loadingProgress == null) {
-                                              return child;
-                                            }
-                                            return Preloader();
-                                          },
-                                        )),
+                                      : null),
                     ),
                     Positioned(
                       bottom: MyStyles.deviceHieight(context) * .04,
@@ -66,35 +57,36 @@ class _SelectedImageState extends State<SelectedImage> {
                         decoration: BoxDecoration(gradient: MyStyles.gradient),
                         // color: MyStyles.primaryGreen,
                         child: ElevatedButton(
-                          style: ButtonStyle(
-                            padding: MaterialStateProperty.all(EdgeInsets.zero),
-                          ),
-                          onPressed: imageUrl == null
-                              ? () async {
-                                  setState(() {
-                                    isLoading = true;
-                                  });
-                                  imageUrl =
-                                      await service!.getColouredImage(context);
-
-                                  imageProvider.checkSource = null;
-                                  setState(() {
-                                    isLoading = false;
-                                  });
-                                }
-                              : null,
-                          child: Container(
-                            height: MyStyles.buttonHeight,
-                            decoration:
-                                BoxDecoration(gradient: MyStyles.gradient),
-                            child: Center(
-                              child: Text(
-                                "CALAURIZE",
-                                style: MyStyles.buttonText,
-                              ),
+                            style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all(EdgeInsets.zero),
                             ),
-                          ),
-                        ),
+                            onPressed: () async {
+                              imageProvider.toggleLoading();
+                              print(imageProvider.isLoading);
+                              imageProvider.imageUrl = await imageProvider
+                                  .service
+                                  .getColouredImage(context);
+                              imageProvider.checkSource = null;
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => OutputImage()),
+                              );
+                              imageProvider.isLoading = false;
+                              print(imageProvider.isLoading);
+                            },
+                            child: Container(
+                              height: MyStyles.buttonHeight,
+                              decoration:
+                                  BoxDecoration(gradient: MyStyles.gradient),
+                              child: Center(
+                                child: Text(
+                                  "CALAURIZE",
+                                  style: MyStyles.buttonText,
+                                ),
+                              ),
+                            )),
                       ),
                     ),
                   ],
