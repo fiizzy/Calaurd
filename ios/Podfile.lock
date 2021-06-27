@@ -6,6 +6,8 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - gallery_saver (0.0.1):
+    - Flutter
   - image_picker (0.0.1):
     - Flutter
   - path_provider (0.0.1):
@@ -18,6 +20,7 @@ PODS:
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - gallery_saver (from `.symlinks/plugins/gallery_saver/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -32,6 +35,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  gallery_saver:
+    :path: ".symlinks/plugins/gallery_saver/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
@@ -43,6 +48,7 @@ SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904

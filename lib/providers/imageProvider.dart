@@ -13,17 +13,17 @@ class ImageProviderClass extends ChangeNotifier {
   Image? urlImage; //Image uploaded by users through URL
   var homeScreenImageBytes;
   var urlImageBytes;
-  bool? isLoading;
+  bool? isLoading = false;
   Services service = new Services();
-  String? imageUrl; //URL for the converted Image
+  String? imageUrl; //URL from the Server
 
   String? checkSource;
   final picker = ImagePicker();
 
-  void toggleLoading() {
-    isLoading = !isLoading!;
-    notifyListeners();
-  }
+  // void toggleLoading() {
+  //   isLoading = !isLoading!;
+  //   notifyListeners();
+  // }
 
   Future getImage(context) async {
     checkSource = 'fromGallery';

@@ -27,9 +27,9 @@ class _SelectedImageState extends State<SelectedImage> {
           elevation: 0,
           shadowColor: MyStyles.backgroundColour,
           title: Container(
-            child: stateProvider.isLoading == false
-                ? Text('Black and White Preview')
-                : Text('Processing...'),
+            child: stateProvider.isLoading == true
+                ? Text('Processing...')
+                : Text('Black and White Preview'),
           ),
         ),
         body: Consumer<ImageProviderClass>(
@@ -62,19 +62,23 @@ class _SelectedImageState extends State<SelectedImage> {
                                   MaterialStateProperty.all(EdgeInsets.zero),
                             ),
                             onPressed: () async {
-                              imageProvider.toggleLoading();
+                              setState(() {
+                                imageProvider.isLoading = true;
+                              });
                               print(imageProvider.isLoading);
                               imageProvider.imageUrl = await imageProvider
                                   .service
                                   .getColouredImage(context);
+
                               imageProvider.checkSource = null;
+                              imageProvider.isLoading = false;
+
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => OutputImage()),
                               );
-                              imageProvider.isLoading = false;
-                              print(imageProvider.isLoading);
+                              // print(imageProvider.isLoading);
                             },
                             child: Container(
                               height: MyStyles.buttonHeight,
