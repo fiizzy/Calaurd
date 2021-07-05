@@ -1,6 +1,8 @@
 import 'package:calaurd/providers/imageProvider.dart';
 import 'package:calaurd/services/service.dart';
 import 'package:calaurd/styles/styles.dart';
+import 'package:calaurd/utils/checkConnectivity.dart';
+import 'package:calaurd/utils/toastMessage.dart';
 import 'package:calaurd/views/outputImage/outputImage.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:calaurd/views/widgets/preloader.dart';
@@ -13,6 +15,8 @@ class SelectedImage extends StatefulWidget {
 }
 
 class _SelectedImageState extends State<SelectedImage> {
+  CheckConnectivity connectionInit = CheckConnectivity();
+
   @override
   Widget build(BuildContext context) {
     dynamic stateProvider =
@@ -62,9 +66,15 @@ class _SelectedImageState extends State<SelectedImage> {
                                   MaterialStateProperty.all(EdgeInsets.zero),
                             ),
                             onPressed: () async {
+                              if (await connectionInit.checkConnectivity() ==
+                                  'notConnected') {
+                                toastMessage();
+                              }
+
                               setState(() {
                                 imageProvider.isLoading = true;
                               });
+
                               print(imageProvider.isLoading);
                               imageProvider.imageUrl = await imageProvider
                                   .service
