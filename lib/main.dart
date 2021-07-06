@@ -14,14 +14,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  dynamic? isFirstTime;
+  static dynamic isLoggedIn;
   // Check users first time for onboarding screen
   Future checkFirstTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    isFirstTime = (prefs.getBool('isFirstTime') ?? true);
-    print('Pressed $isFirstTime times.');
-    await prefs.setBool('isFirstTime', isFirstTime);
-    return isFirstTime;
+    isLoggedIn = (prefs.getBool('isLoggedIn') ?? true);
+    print('Shared pereferences say $isLoggedIn');
+    await prefs.setBool('isLoggedIn', isLoggedIn);
   }
 
   @override
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Calaurd',
           theme: AppTheme.lightTheme,
-          initialRoute: isFirstTime == true ? '/' : '/home',
+          initialRoute: isLoggedIn == true ? '/' : '/home',
           routes: {
             '/': (context) => Onboarding(),
             '/home': (context) => Home(),

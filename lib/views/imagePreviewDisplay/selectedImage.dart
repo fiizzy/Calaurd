@@ -16,6 +16,7 @@ class SelectedImage extends StatefulWidget {
 
 class _SelectedImageState extends State<SelectedImage> {
   CheckConnectivity connectionInit = CheckConnectivity();
+  String? checkServiceException;
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +67,29 @@ class _SelectedImageState extends State<SelectedImage> {
                                   MaterialStateProperty.all(EdgeInsets.zero),
                             ),
                             onPressed: () async {
-                              if (await connectionInit.checkConnectivity() ==
-                                  'notConnected') {
-                                toastMessage(message: 'No internet Connection');
-                              } else {
-                                setState(() {
-                                  imageProvider.isLoading = true;
-                                });
+                              setState(() {
+                                imageProvider.isLoading = true;
+                              });
+                              checkServiceException = await imageProvider
+                                  .service
+                                  .getColouredImage(context);
 
+                              if (await connectionInit.checkConnectivity() ==
+                                      'notConnected' ||
+                                  checkServiceException ==
+                                      'SocketException: SocketException') {
+                                print(checkServiceException);
+
+                                toastMessage(
+                                    message:
+                                        'Failed to process. \n Check your internet');
+                                Navigator.pop(context);
+                                imageProvider.checkSource = null;
+                                imageProvider.isLoading = false;
+                              } else {
+                                imageProvider.imageUrl = checkServiceException;
                                 print(imageProvider.isLoading);
-                                imageProvider.imageUrl = await imageProvider
-                                    .service
-                                    .getColouredImage(context);
+                                print(checkServiceException);
 
                                 imageProvider.checkSource = null;
                                 imageProvider.isLoading = false;

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:calaurd/providers/imageProvider.dart';
 import 'package:http/http.dart' as http;
@@ -25,10 +26,17 @@ class Services {
       request.files
           .add(await http.MultipartFile.fromPath('image', imageProvider.path!));
     }
-    var res = await request.send();
-    var response = await http.Response.fromStream(res);
-    var finalResult = jsonDecode(response.body);
-    print(finalResult['output_url']);
-    return finalResult['output_url'];
+
+    try {
+      var res = await request.send();
+      var response = await http.Response.fromStream(res);
+      var finalResult = jsonDecode(response.body);
+      print(finalResult['output_url']);
+      return finalResult['output_url'];
+    } on SocketException {
+      var e = SocketException('SocketException').toString();
+      print(e);
+      return e;
+    }
   }
 }
