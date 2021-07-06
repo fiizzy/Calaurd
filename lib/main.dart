@@ -7,22 +7,32 @@ import 'providers/imageProvider.dart';
 import 'package:flutter/material.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  dynamic? isFirstTime;
+  // Check users first time for onboarding screen
+  Future checkFirstTime() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    isFirstTime = (prefs.getBool('isFirstTime') ?? true);
+    print('Pressed $isFirstTime times.');
+    await prefs.setBool('isFirstTime', isFirstTime);
+    return isFirstTime;
+  }
+
   @override
   Widget build(BuildContext context) {
+    checkFirstTime();
     return ChangeNotifierProvider<ImageProviderClass>(
         create: (context) => ImageProviderClass(),
         child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Calaurd',
           theme: AppTheme.lightTheme,
-          initialRoute: '/',
+          initialRoute: isFirstTime == true ? '/' : '/home',
           routes: {
             '/': (context) => Onboarding(),
             '/home': (context) => Home(),
