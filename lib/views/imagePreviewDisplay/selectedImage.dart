@@ -68,26 +68,26 @@ class _SelectedImageState extends State<SelectedImage> {
                             onPressed: () async {
                               if (await connectionInit.checkConnectivity() ==
                                   'notConnected') {
-                                toastMessage();
+                                toastMessage(message: 'No internet Connection');
+                              } else {
+                                setState(() {
+                                  imageProvider.isLoading = true;
+                                });
+
+                                print(imageProvider.isLoading);
+                                imageProvider.imageUrl = await imageProvider
+                                    .service
+                                    .getColouredImage(context);
+
+                                imageProvider.checkSource = null;
+                                imageProvider.isLoading = false;
+
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OutputImage()),
+                                );
                               }
-
-                              setState(() {
-                                imageProvider.isLoading = true;
-                              });
-
-                              print(imageProvider.isLoading);
-                              imageProvider.imageUrl = await imageProvider
-                                  .service
-                                  .getColouredImage(context);
-
-                              imageProvider.checkSource = null;
-                              imageProvider.isLoading = false;
-
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => OutputImage()),
-                              );
                               // print(imageProvider.isLoading);
                             },
                             child: Container(

@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 toastMessage({type, message}) {
   return Fluttertoast.showToast(
-      msg: "This is Center Short Toast",
+      msg: message,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
