@@ -1,5 +1,6 @@
 import 'package:calaurd/providers/imageProvider.dart';
 import 'package:calaurd/styles/styles.dart';
+import 'package:calaurd/utils/toastMessage.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:calaurd/views/widgets/preloader.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -13,10 +14,10 @@ class UploadImage extends StatefulWidget {
 }
 
 class _UploadImageState extends State<UploadImage> {
+  bool isLoading = false;
+
   TextEditingController urlController = new TextEditingController();
   String? blackandWhiteUrl;
-
-  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -129,14 +130,14 @@ class _UploadImageState extends State<UploadImage> {
                                         splashColor: Colors.red,
                                         onTap: () async {
                                           blackandWhiteUrl = urlController.text;
-                                          setState(() {
-                                            isLoading = true;
-                                          });
+                                          imageProvider.imageUrl =
+                                              blackandWhiteUrl;
+                                          bool _validURL =
+                                              Uri.parse(blackandWhiteUrl!)
+                                                  .isAbsolute;
+
                                           await imageProvider.getUrlImage(
                                               context, blackandWhiteUrl!);
-                                          setState(() {
-                                            isLoading = false;
-                                          });
                                         },
                                         child: Container(
                                           child: Center(

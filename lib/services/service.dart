@@ -18,6 +18,8 @@ class Services {
       request.files.add(http.MultipartFile.fromBytes(
           'image', imageProvider.homeScreenImageBytes,
           filename: 'photo.jpg'));
+
+      //Send image already gotten from link to device first before sending// Slightly redundant for the pupose.
     } else if (imageProvider.checkSource == 'fromUrl') {
       request.files.add(http.MultipartFile.fromBytes(
           'image', imageProvider.urlImageBytes,
@@ -39,4 +41,14 @@ class Services {
       return e;
     }
   }
+
+  //Get image through link
+  Future<String> getImageDirectlyFromLink() async {
+    return '';
+  }
 }
+
+// else if (imageProvider.checkSource == 'fromUrl') {
+//       request.files.add(http.MultipartFile.fromBytes(
+//           'image', imageProvider.urlImageBytes,
+//           filename: 'photo.jpg'));

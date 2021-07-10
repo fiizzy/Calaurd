@@ -48,7 +48,7 @@ class _OutputImageState extends State<OutputImage> {
                 ),
                 Positioned(
                   bottom: MyStyles.deviceHieight(context) * .04,
-                  child: saveAndRetake(context),
+                  child: SaveAndRetake(),
                 ),
               ],
             );

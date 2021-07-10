@@ -5,9 +5,9 @@ toastMessage({type, message}) {
   return Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
+      gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 2,
-      backgroundColor: Colors.red,
+      backgroundColor: type == 'success' ? Colors.green : Colors.red,
       textColor: Colors.white,
       fontSize: 16.0);
 }

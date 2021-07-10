@@ -1,4 +1,5 @@
 import 'package:calaurd/services/service.dart';
+import 'package:calaurd/utils/toastMessage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,6 +8,7 @@ import 'dart:io';
 // import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class ImageProviderClass extends ChangeNotifier {
+  String? inputUrl;
   File? image;
   String? path;
   Image? homeScreenImage;
@@ -16,6 +18,7 @@ class ImageProviderClass extends ChangeNotifier {
   bool? isLoading = false;
   Services service = new Services();
   String? imageUrl; //URL from the Server
+  bool? formError;
 
   String? checkSource;
   final picker = ImagePicker();
@@ -55,16 +58,25 @@ class ImageProviderClass extends ChangeNotifier {
 
   Future getUrlImage(BuildContext context, String url) async {
     try {
+      inputUrl = url;
       checkSource = 'fromUrl';
       urlImage = Image.network(url);
       Navigator.pushNamed(context, '/selectedImage');
       urlImageBytes = (await NetworkAssetBundle(Uri.parse(url)).load(url))
           .buffer
           .asUint8List();
+      formError = false;
+
+      isLoading = false;
+      print(formError);
+
       return 'Check the URL';
     } catch (e) {
       print(e);
-      return 'Check the URL';
+      formError = true;
+      toastMessage(message: 'Invalid URL', type: 'error');
+      Navigator.pop(context);
+      print(formError);
     }
   }
 }

@@ -17,11 +17,17 @@ class SelectedImage extends StatefulWidget {
 class _SelectedImageState extends State<SelectedImage> {
   CheckConnectivity connectionInit = CheckConnectivity();
   String? checkServiceException;
-
+  bool? checker;
   @override
   Widget build(BuildContext context) {
     dynamic stateProvider =
         Provider.of<ImageProviderClass>(context, listen: false);
+
+    if (stateProvider.checkSource == "fromUrl") {
+      setState(() {
+        stateProvider.isLoading = true;
+      });
+    }
 
     return Scaffold(
         backgroundColor: MyStyles.backgroundColour,
@@ -79,7 +85,6 @@ class _SelectedImageState extends State<SelectedImage> {
                                   checkServiceException ==
                                       'SocketException: SocketException') {
                                 print(checkServiceException);
-
                                 toastMessage(
                                     message:
                                         'Failed to process. \n Check your internet');
