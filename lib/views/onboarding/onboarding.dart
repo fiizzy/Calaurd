@@ -1,5 +1,4 @@
 import 'package:calaurd/styles/styles.dart';
-import 'package:calaurd/views/home/enterEmail.dart';
 import 'package:calaurd/views/onboarding/indicatorWidget.dart';
 import 'package:calaurd/views/onboarding/onboardingWidgets.dart';
 import 'package:flutter/material.dart';
@@ -46,12 +45,12 @@ class _OnboardingState extends State<Onboarding> {
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(EdgeInsets.zero),
                 ),
-                onPressed: () {
-                  showModalBottomSheet(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (context) => EnterEmail());
-                  // Navigator.pushNamed(context, '/home');
+                onPressed: () async {
+                  // await showModalBottomSheet(
+                  //     isScrollControlled: true,
+                  //     context: context,
+                  //     builder: (context) => EnterEmail());
+                  Navigator.pushReplacementNamed(context, '/home');
                 },
                 child: Container(
                   height: MyStyles.buttonHeight,
@@ -69,5 +68,11 @@ class _OnboardingState extends State<Onboarding> {
         ],
       ),
     );
+  }
+
+  void dispose() {
+    // Never called
+    print("Disposing first route");
+    super.dispose();
   }
 }

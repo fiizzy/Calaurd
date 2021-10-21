@@ -19,7 +19,7 @@ class ImageProviderClass extends ChangeNotifier {
   Services service = new Services();
   String? imageUrl; //URL from the Server
   bool? formError;
-
+  bool? isLoggedIn;
   String? checkSource;
   final picker = ImagePicker();
 

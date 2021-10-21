@@ -67,10 +67,15 @@ class _SaveAndRetakeState extends State<SaveAndRetake> {
               )),
         ),
         MyStyles.horizontalSpaceOne,
-        Icon(
-          Icons.refresh,
-          color: MyStyles.white,
-          size: 40,
+        InkWell(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+          child: Icon(
+            Icons.refresh,
+            color: MyStyles.white,
+            size: 40,
+          ),
         )
       ],
     );

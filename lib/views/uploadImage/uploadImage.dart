@@ -1,6 +1,5 @@
 import 'package:calaurd/providers/imageProvider.dart';
 import 'package:calaurd/styles/styles.dart';
-import 'package:calaurd/utils/toastMessage.dart';
 import 'package:calaurd/views/widgets/backIcon.dart';
 import 'package:calaurd/views/widgets/preloader.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -132,9 +131,6 @@ class _UploadImageState extends State<UploadImage> {
                                           blackandWhiteUrl = urlController.text;
                                           imageProvider.imageUrl =
                                               blackandWhiteUrl;
-                                          bool _validURL =
-                                              Uri.parse(blackandWhiteUrl!)
-                                                  .isAbsolute;
 
                                           await imageProvider.getUrlImage(
                                               context, blackandWhiteUrl!);

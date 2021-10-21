@@ -42,7 +42,7 @@ class _EnterEmailState extends State<EnterEmail> {
                         padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/home');
                       },
                       child: Container(
                         height: MyStyles.buttonHeight,
@@ -59,7 +59,7 @@ class _EnterEmailState extends State<EnterEmail> {
                     Center(
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, '/home');
+                          Navigator.pushReplacementNamed(context, '/home');
                         },
                         child: Text('Remind me Later'),
                       ),

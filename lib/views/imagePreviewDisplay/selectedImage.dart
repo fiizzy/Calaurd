@@ -1,5 +1,4 @@
 import 'package:calaurd/providers/imageProvider.dart';
-import 'package:calaurd/services/service.dart';
 import 'package:calaurd/styles/styles.dart';
 import 'package:calaurd/utils/checkConnectivity.dart';
 import 'package:calaurd/utils/toastMessage.dart';
