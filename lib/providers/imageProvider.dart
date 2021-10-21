@@ -45,6 +45,8 @@ class ImageProviderClass extends ChangeNotifier {
 
   Future getHomeScreenImage(BuildContext context, String imagePath) async {
     try {
+      isLoading = false;
+      notifyListeners();
       checkSource = 'fromHomeScreen';
       homeScreenImage = Image.asset(imagePath);
 
@@ -72,7 +74,6 @@ class ImageProviderClass extends ChangeNotifier {
 
       return 'Check the URL';
     } catch (e) {
-      print(e);
       formError = true;
       toastMessage(message: 'Invalid URL', type: 'error');
       Navigator.pop(context);

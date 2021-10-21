@@ -17,7 +17,7 @@ class SelectedImage extends StatefulWidget {
 class _SelectedImageState extends State<SelectedImage> {
   CheckConnectivity connectionInit = CheckConnectivity();
   String? checkServiceException;
-  bool? checker;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     dynamic stateProvider =
@@ -30,6 +30,7 @@ class _SelectedImageState extends State<SelectedImage> {
     }
 
     return Scaffold(
+        key: _scaffoldKey,
         backgroundColor: MyStyles.backgroundColour,
         appBar: AppBar(
           centerTitle: true,
@@ -74,6 +75,9 @@ class _SelectedImageState extends State<SelectedImage> {
                             ),
                             onPressed: () async {
                               setState(() {
+                                imageProvider.isLoading = false;
+                              });
+                              setState(() {
                                 imageProvider.isLoading = true;
                               });
                               checkServiceException = await imageProvider
@@ -93,17 +97,20 @@ class _SelectedImageState extends State<SelectedImage> {
                                 imageProvider.isLoading = false;
                               } else {
                                 imageProvider.imageUrl = checkServiceException;
-                                print(imageProvider.isLoading);
-                                print(checkServiceException);
 
-                                imageProvider.checkSource = null;
+                                // setState(() {
                                 imageProvider.isLoading = false;
-
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => OutputImage()),
-                                );
+                                // });
+                                try {
+                                  Navigator.pushReplacement(
+                                    _scaffoldKey.currentContext!,
+                                    MaterialPageRoute(
+                                        builder: (context) => OutputImage()),
+                                  );
+                                } catch (e) {
+                                  debugPrint(
+                                      'Error from SelectedImage.dart on Pop Context:: $e');
+                                }
                               }
                               // print(imageProvider.isLoading);
                             },
