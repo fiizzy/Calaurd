@@ -29,6 +29,7 @@ dependencies:
   image_picker: ^0.7.5+3
   dio: ^4.0.0
   flutter_cache_manager: ^3.1.1
+  flutter_native_splash: ^1.2.4
   gallery_saver: ^2.1.0
   connectivity: ^3.0.6
   fluttertoast: ^8.0.7

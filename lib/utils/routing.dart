@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class RoutingLogic extends StatelessWidget {
   static bool? isLoggedIn;
-  Future<void> checkFirstTime() async {
+  static Future<void> checkFirstTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isLoggedIn = (prefs.getBool('isLoggedIn') ?? false);
     print('Shared pereferences say $isLoggedIn');

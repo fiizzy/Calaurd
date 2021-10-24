@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await RoutingLogic().checkFirstTime();
+  await RoutingLogic.checkFirstTime();
   runApp(MyApp());
 }
 
@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
           title: 'Calaurd',
           theme: AppTheme.lightTheme,
           initialRoute: '/routingLogic',
-          // initialRoute: (isLoggedIn ?? false) ? '/home' : '/',
           routes: {
             '/': (context) => Onboarding(),
             '/home': (context) => Home(),
