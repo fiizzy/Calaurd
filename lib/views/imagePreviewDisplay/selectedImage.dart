@@ -83,11 +83,12 @@ class _SelectedImageState extends State<SelectedImage> {
                                   .service
                                   .getColouredImage(context);
 
-                              if (await connectionInit.checkConnectivity() ==
+                              if (await CheckConnectivity.checkConnectivity() ==
                                       'notConnected' ||
                                   checkServiceException ==
                                       'SocketException: SocketException') {
-                                print(checkServiceException);
+                                print(
+                                    "The internet status is : ${await CheckConnectivity.checkConnectivity()}");
                                 toastMessage(
                                     message:
                                         'Failed to process. \n Check your internet');
@@ -96,7 +97,6 @@ class _SelectedImageState extends State<SelectedImage> {
                                 imageProvider.isLoading = false;
                               } else {
                                 imageProvider.imageUrl = checkServiceException;
-
                                 // setState(() {
                                 imageProvider.isLoading = false;
                                 // });
