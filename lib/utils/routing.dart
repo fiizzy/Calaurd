@@ -14,7 +14,7 @@ class RoutingLogic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(isLoggedIn);
-    if ((isLoggedIn ?? false)) {
+    if ((isLoggedIn!)) {
       return Home();
     } else
       return Onboarding();

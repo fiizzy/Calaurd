@@ -1,7 +1,9 @@
 import 'package:calaurd/styles/styles.dart';
+import 'package:calaurd/views/home/home.dart';
 import 'package:calaurd/views/onboarding/indicatorWidget.dart';
 import 'package:calaurd/views/onboarding/onboardingWidgets.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -10,6 +12,11 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
+
+  Future setSharedpref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,20 @@ class _OnboardingState extends State<Onboarding> {
                 currentIndex = index;
               });
             },
-            children: [OnboardingOne(), OnboardingTwo(), OnboardingThree()],
+            children: [
+              OnboardingWidget(
+                assetPath: 'images/onboardingOne.png',
+                desc: 'First, it was Black and White',
+              ),
+              OnboardingWidget(
+                assetPath: 'images/onboardingTwo.png',
+                desc: 'then came Calaurd',
+              ),
+              OnboardingWidget(
+                assetPath: 'images/onboardingThree.jpg',
+                desc: '...and all was Coloured',
+              ),
+            ],
           ),
           Positioned(
               top: MyStyles.deviceHieight(context) * .25,
@@ -46,11 +66,14 @@ class _OnboardingState extends State<Onboarding> {
                   padding: MaterialStateProperty.all(EdgeInsets.zero),
                 ),
                 onPressed: () async {
-                  // await showModalBottomSheet(
-                  //     isScrollControlled: true,
-                  //     context: context,
-                  //     builder: (context) => EnterEmail());
-                  Navigator.pushReplacementNamed(context, '/home');
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => Home(),
+                    ),
+                  );
+
+                  await setSharedpref();
                 },
                 child: Container(
                   height: MyStyles.buttonHeight,
@@ -70,9 +93,9 @@ class _OnboardingState extends State<Onboarding> {
     );
   }
 
-  void dispose() {
-    // Never called
-    print("Disposing first route");
-    super.dispose();
-  }
+  // void dispose() {
+  //   // Never called
+  //   print("Disposing first route");
+  //   super.dispose();
+  // }
 }
