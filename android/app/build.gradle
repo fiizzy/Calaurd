@@ -48,7 +48,7 @@ android {
         applicationId "com.calaurd.app"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 4
+        versionCode 6
         versionName "1.0.1"
 
     }
@@ -64,8 +64,8 @@ android {
    buildTypes {
        release {
             signingConfig signingConfigs.release
-            shrinkResources false
-            minifyEnabled false
+            // shrinkResources false
+            // minifyEnabled false
        }
    }
 
