@@ -1,99 +1,281 @@
 name: calaurd
 description: A new Flutter project.
-
-# The following line prevents the package from being accidentally published to
-# pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
-
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+publish_to: none
 version: 1.0.0+1
-
-environment:
-  sdk: ">=2.15.0 <3.0.0"
-
-dependencies:
-  flutter:
+environment: 
+  sdk: '>=2.15.1 <3.0.0'
+dependencies: 
+  flutter: 
     sdk: flutter
-  websafe_svg: ^2.0.0-nullsafety
-  provider: ^5.0.0
-  dotted_border: ^2.0.0
-  image_picker: ^0.7.5+3
-  dio: ^4.0.0
-  flutter_cache_manager: ^3.1.1
-  flutter_native_splash: ^1.2.4
-  gallery_saver: ^2.1.0
-  connectivity: ^3.0.6
-  fluttertoast: ^8.0.7
-  shared_preferences: ^2.0.6
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
-dev_dependencies:
-  flutter_test:
+  auto_size_text: 3.0.0
+dev_dependencies: 
+  flutter_test: 
     sdk: flutter
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
-flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
+  flutter_lints: ^1.0.0
+flutter: 
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
-  assets:
-    - images/
-    - svg/
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  fonts:
-    - family: Aeonik-Air
-      fonts:
-        - asset: fonts/Aeonik-Air.otf
-
-    - family: Aeonik-Light
-      fonts:
-        - asset: fonts/Aeonik-Light.otf
-
-    - family: Aeonik-Regular
-      fonts:
-        - asset: fonts/Aeonik-Regular.otf
-
-    - family: Aeonik-Medium
-      fonts:
-        - asset: fonts/Aeonik-Medium.otf
-
-    - family: Aeonik-Bold
-      fonts:
-        - asset: fonts/Aeonik-Bold.otf
-
-    - family: Aeonik-Black
-      fonts:
-        - asset: fonts/Aeonik-Black.otf
-          style: italic
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  assets: 
+    - packages/calaurd/assets/images/104_73.png
+    - packages/calaurd/assets/images/107_5.png
+    - packages/calaurd/assets/images/104_60.png
+    - packages/calaurd/assets/images/104_109.png
+    - packages/calaurd/assets/images/104_110.png
+    - packages/calaurd/assets/images/107_75.png
+    - packages/calaurd/assets/images/107_66.png
+    - packages/calaurd/assets/images/107_71.png
+    - packages/calaurd/assets/images/107_46.png
+    - packages/calaurd/assets/images/107_72.png
+    - packages/calaurd/assets/images/18_57.png
+    - packages/calaurd/assets/images/18_61.png
+    - packages/calaurd/assets/images/15_504.png
+    - packages/calaurd/assets/images/15_252.png
+    - packages/calaurd/assets/images/15_288.png
+    - packages/calaurd/assets/images/15_294.png
+    - packages/calaurd/assets/images/15_304.png
+    - packages/calaurd/assets/images/15_309.png
+    - packages/calaurd/assets/images/15_310.png
+    - packages/calaurd/assets/images/15_311.png
+    - packages/calaurd/assets/images/15_312.png
+    - packages/calaurd/assets/images/15_320.png
+    - packages/calaurd/assets/images/15_587.png
+    - packages/calaurd/assets/images/15_594.png
+    - packages/calaurd/assets/images/15_519.png
+    - packages/calaurd/assets/images/15_522.png
+    - packages/calaurd/assets/images/15_523.png
+    - packages/calaurd/assets/images/15_555.png
+    - packages/calaurd/assets/images/15_533.png
+    - packages/calaurd/assets/images/15_534.png
+    - packages/calaurd/assets/images/15_558.png
+    - packages/calaurd/assets/images/15_560.png
+    - packages/calaurd/assets/images/15_576.png
+    - packages/calaurd/assets/images/18_137.png
+    - packages/calaurd/assets/images/18_141.png
+    - packages/calaurd/assets/images/18_146.png
+    - packages/calaurd/assets/images/18_147.png
+    - packages/calaurd/assets/images/18_148.png
+    - packages/calaurd/assets/images/18_149.png
+    - packages/calaurd/assets/images/18_157.png
+    - packages/calaurd/assets/images/18_161.png
+    - packages/calaurd/assets/images/18_163.png
+    - packages/calaurd/assets/images/18_172.png
+    - packages/calaurd/assets/images/18_179.png
+    - packages/calaurd/assets/images/18_183.png
+    - packages/calaurd/assets/images/18_188.png
+    - packages/calaurd/assets/images/18_189.png
+    - packages/calaurd/assets/images/18_190.png
+    - packages/calaurd/assets/images/18_191.png
+    - packages/calaurd/assets/images/18_199.png
+    - packages/calaurd/assets/images/18_203.png
+    - packages/calaurd/assets/images/18_205.png
+    - packages/calaurd/assets/images/18_214.png
+    - packages/calaurd/assets/images/18_282.png
+    - packages/calaurd/assets/images/18_291.png
+    - packages/calaurd/assets/images/18_238.png
+    - packages/calaurd/assets/images/18_285.png
+    - packages/calaurd/assets/images/18_294.png
+    - packages/calaurd/assets/images/18_262.png
+    - packages/calaurd/assets/images/18_288.png
+    - packages/calaurd/assets/images/18_301.png
+    - packages/calaurd/assets/images/18_305.png
+    - packages/calaurd/assets/images/18_310.png
+    - packages/calaurd/assets/images/18_311.png
+    - packages/calaurd/assets/images/18_312.png
+    - packages/calaurd/assets/images/18_313.png
+    - packages/calaurd/assets/images/18_321.png
+    - packages/calaurd/assets/images/18_325.png
+    - packages/calaurd/assets/images/18_327.png
+    - packages/calaurd/assets/images/18_331.png
+    - packages/calaurd/assets/images/18_334.png
+    - packages/calaurd/assets/images/18_337.png
+    - packages/calaurd/assets/images/18_340.png
+    - packages/calaurd/assets/images/18_343.png
+    - packages/calaurd/assets/images/18_346.png
+    - packages/calaurd/assets/images/18_349.png
+    - packages/calaurd/assets/images/18_352.png
+    - packages/calaurd/assets/images/18_355.png
+    - packages/calaurd/assets/images/18_361.png
+    - packages/calaurd/assets/images/18_358.png
+    - packages/calaurd/assets/images/18_369.png
+    - packages/calaurd/assets/images/18_386.png
+    - packages/calaurd/assets/images/18_106.png
+    - packages/calaurd/assets/images/18_108.png
+    - packages/calaurd/assets/images/18_112.png
+    - packages/calaurd/assets/images/18_124.png
+    - packages/calaurd/assets/images/20_1.png
+    - packages/calaurd/assets/images/20_6.png
+    - packages/calaurd/assets/images/20_14.png
+    - packages/calaurd/assets/images/20_20.png
+    - packages/calaurd/assets/images/23_55.png
+    - packages/calaurd/assets/images/4_1.png
+    - packages/calaurd/assets/images/6_9.png
+    - packages/calaurd/assets/images/6_8.png
+    - packages/calaurd/assets/images/6_16.png
+    - packages/calaurd/assets/images/6_21.png
+    - packages/calaurd/assets/images/6_23.png
+    - packages/calaurd/assets/images/6_27.png
+    - packages/calaurd/assets/images/6_45.png
+    - packages/calaurd/assets/images/6_74.png
+    - packages/calaurd/assets/images/6_76.png
+    - packages/calaurd/assets/images/8_56.png
+    - packages/calaurd/assets/images/8_58.png
+    - packages/calaurd/assets/images/6_83.png
+    - packages/calaurd/assets/images/6_87.png
+    - packages/calaurd/assets/images/6_98.png
+    - packages/calaurd/assets/images/6_99.png
+    - packages/calaurd/assets/images/6_100.png
+    - packages/calaurd/assets/images/6_101.png
+    - packages/calaurd/assets/images/8_64.png
+    - packages/calaurd/assets/images/15_102.png
+    - packages/calaurd/assets/images/15_104.png
+    - packages/calaurd/assets/images/15_114.png
+    - packages/calaurd/assets/images/15_118.png
+    - packages/calaurd/assets/images/15_123.png
+    - packages/calaurd/assets/images/15_124.png
+    - packages/calaurd/assets/images/15_125.png
+    - packages/calaurd/assets/images/15_126.png
+    - packages/calaurd/assets/images/15_134.png
+    - packages/calaurd/assets/images/15_143.png
+    - packages/calaurd/assets/images/15_145.png
+    - packages/calaurd/assets/images/15_188.png
+    - packages/calaurd/assets/images/15_190.png
+    - packages/calaurd/assets/images/15_206.png
+    - packages/calaurd/assets/images/15_208.png
+    - packages/calaurd/assets/images/15_224.png
+    - packages/calaurd/assets/images/15_226.png
+    - packages/calaurd/assets/images/15_176.png
+    - packages/calaurd/assets/images/15_178.png
+    - packages/calaurd/assets/images/15_194.png
+    - packages/calaurd/assets/images/15_196.png
+    - packages/calaurd/assets/images/15_212.png
+    - packages/calaurd/assets/images/15_214.png
+    - packages/calaurd/assets/images/15_230.png
+    - packages/calaurd/assets/images/15_232.png
+    - packages/calaurd/assets/images/15_182.png
+    - packages/calaurd/assets/images/15_184.png
+    - packages/calaurd/assets/images/15_200.png
+    - packages/calaurd/assets/images/15_202.png
+    - packages/calaurd/assets/images/15_218.png
+    - packages/calaurd/assets/images/15_220.png
+    - packages/calaurd/assets/images/15_149.png
+    - packages/calaurd/assets/images/15_153.png
+    - packages/calaurd/assets/images/15_158.png
+    - packages/calaurd/assets/images/15_159.png
+    - packages/calaurd/assets/images/15_160.png
+    - packages/calaurd/assets/images/15_161.png
+    - packages/calaurd/assets/images/15_169.png
+    - packages/calaurd/assets/images/12_8.png
+    - packages/calaurd/assets/images/12_10.png
+    - packages/calaurd/assets/images/15_76.png
+    - packages/calaurd/assets/images/15_552.png
+    - packages/calaurd/assets/images/15_81.png
+    - packages/calaurd/assets/images/15_83.png
+    - packages/calaurd/assets/images/15_91.png
+    - packages/calaurd/assets/images/15_99.png
+    - packages/calaurd/assets/images/15_64.png
+    - packages/calaurd/assets/images/15_66.png
+    - packages/calaurd/assets/images/15_69.png
+    - packages/calaurd/assets/images/301_113.png
+    - packages/calaurd/assets/images/301_116.png
+    - packages/calaurd/assets/images/301_119.png
+    - packages/calaurd/assets/images/301_124.png
+    - packages/calaurd/assets/images/301_125.png
+    - packages/calaurd/assets/images/301_126.png
+    - packages/calaurd/assets/images/301_127.png
+    - packages/calaurd/assets/images/301_135.png
+    - packages/calaurd/assets/images/301_139.png
+    - packages/calaurd/assets/images/301_141.png
+    - packages/calaurd/assets/images/301_175.png
+    - packages/calaurd/assets/images/301_180.png
+    - packages/calaurd/assets/images/301_184.png
+    - packages/calaurd/assets/images/301_206.png
+    - packages/calaurd/assets/images/301_211.png
+    - packages/calaurd/assets/images/301_92.png
+    - packages/calaurd/assets/images/302_96.png
+    - packages/calaurd/assets/images/302_102.png
+    - packages/calaurd/assets/images/302_91.png
+    - packages/calaurd/assets/images/404_115.png
+    - packages/calaurd/assets/images/404_89.png
+    - packages/calaurd/assets/images/404_95.png
+    - packages/calaurd/assets/images/1_2.png
+    - packages/calaurd/assets/images/409_106.png
+    - packages/calaurd/assets/images/409_108.png
+    - packages/calaurd/assets/images/409_117.png
+    - packages/calaurd/assets/images/409_119.png
+    - packages/calaurd/assets/images/409_120.png
+    - packages/calaurd/assets/images/409_127.png
+    - packages/calaurd/assets/images/409_129.png
+    - packages/calaurd/assets/images/409_130.png
+    - packages/calaurd/assets/images/409_137.png
+    - packages/calaurd/assets/images/409_139.png
+    - packages/calaurd/assets/images/409_156.png
+    - packages/calaurd/assets/images/409_162.png
+    - packages/calaurd/assets/images/409_165.png
+    - packages/calaurd/assets/images/409_168.png
+    - packages/calaurd/assets/images/409_173.png
+    - packages/calaurd/assets/images/409_174.png
+    - packages/calaurd/assets/images/409_175.png
+    - packages/calaurd/assets/images/409_176.png
+    - packages/calaurd/assets/images/409_184.png
+    - packages/calaurd/assets/images/409_188.png
+    - packages/calaurd/assets/images/409_190.png
+    - packages/calaurd/assets/images/409_194.png
+    - packages/calaurd/assets/images/409_198.png
+    - packages/calaurd/assets/images/409_203.png
+    - packages/calaurd/assets/images/409_204.png
+    - packages/calaurd/assets/images/409_205.png
+    - packages/calaurd/assets/images/409_206.png
+    - packages/calaurd/assets/images/409_214.png
+    - packages/calaurd/assets/images/409_218.png
+    - packages/calaurd/assets/images/409_220.png
+    - packages/calaurd/assets/images/409_223.png
+    - packages/calaurd/assets/images/409_229.png
+    - packages/calaurd/assets/images/409_233.png
+    - packages/calaurd/assets/images/409_238.png
+    - packages/calaurd/assets/images/409_239.png
+    - packages/calaurd/assets/images/409_240.png
+    - packages/calaurd/assets/images/409_241.png
+    - packages/calaurd/assets/images/409_249.png
+    - packages/calaurd/assets/images/409_253.png
+    - packages/calaurd/assets/images/409_255.png
+    - packages/calaurd/assets/images/409_259.png
+    - packages/calaurd/assets/images/409_262.png
+    - packages/calaurd/assets/images/409_265.png
+    - packages/calaurd/assets/images/409_268.png
+    - packages/calaurd/assets/images/409_271.png
+    - packages/calaurd/assets/images/409_274.png
+    - packages/calaurd/assets/images/409_277.png
+    - packages/calaurd/assets/images/409_280.png
+    - packages/calaurd/assets/images/409_284.png
+    - packages/calaurd/assets/images/409_288.png
+    - packages/calaurd/assets/images/409_293.png
+    - packages/calaurd/assets/images/409_294.png
+    - packages/calaurd/assets/images/409_295.png
+    - packages/calaurd/assets/images/409_296.png
+    - packages/calaurd/assets/images/409_304.png
+    - packages/calaurd/assets/images/409_308.png
+    - packages/calaurd/assets/images/409_310.png
+    - packages/calaurd/assets/images/409_314.png
+    - packages/calaurd/assets/images/409_317.png
+    - packages/calaurd/assets/images/409_320.png
+    - packages/calaurd/assets/images/409_323.png
+    - packages/calaurd/assets/images/409_326.png
+    - packages/calaurd/assets/images/409_329.png
+    - packages/calaurd/assets/images/409_332.png
+    - packages/calaurd/assets/images/409_335.png
+    - packages/calaurd/assets/images/409_338.png
+    - packages/calaurd/assets/images/409_342.png
+    - packages/calaurd/assets/images/409_346.png
+    - packages/calaurd/assets/images/409_349.png
+    - packages/calaurd/assets/images/409_351.png
+    - packages/calaurd/assets/images/409_357.png
+    - packages/calaurd/assets/images/409_361.png
+    - packages/calaurd/assets/images/409_368.png
+    - packages/calaurd/assets/images/409_373.png
+    - packages/calaurd/assets/images/409_381.png
+    - packages/calaurd/assets/images/409_385.png
+    - packages/calaurd/assets/images/409_395.png
+    - packages/calaurd/assets/images/409_400.png
+    - packages/calaurd/assets/images/409_408.png
+    - packages/calaurd/assets/images/409_93.png
+    - packages/calaurd/assets/images/409_97.png
